@@ -19,6 +19,7 @@ public class MainView {
 		String lastName;
 		int age;
 		Level level;
+		double marks;
 		System.out.println("Enter \n");
 		try (Scanner scanner = new Scanner(System.in)) {
 			boolean exit = true;
@@ -34,40 +35,40 @@ public class MainView {
 						}
 						break;
 					case 2:
-						System.out.println("Enter id firstName lastname, age and level 0 : beginner, 1:intermediate, 2:advance");
+						System.out.println("Enter id firstName lastname, age and marks");
 						id = scanner.nextInt();
 						firstName = scanner.next();
 						lastName = scanner.next();
 						age = scanner.nextInt();
+						marks = scanner.nextDouble();
 						level = null;
-						switch (scanner.nextInt()) {
-						case 0:
-							level = Level.BEGINNER;
-							break;
-						case 1:
-							level = Level.INTERMEDIATE;
-							break;
-						case 2:
+						if (marks > 75) {
 							level = Level.ADVANCE;
-							break;
+						} else {
+							if (marks > 65) {
+								level = Level.INTERMEDIATE;
+							} else {
+								level = Level.BEGINNER;
+							}
 						}
+
 						Intern intern = new Intern(id, firstName, lastName, age, level);
 						System.out.println(internsController.insert(intern));
 						break;
 					case 3:
-						System.out.println("Enter id and level");
+						System.out.println("Enter id and marks");
 						id = scanner.nextInt();
 						level = null;
-						switch (scanner.nextInt()) {
-						case 0:
-							level = Level.BEGINNER;
-							break;
-						case 1:
-							level = Level.INTERMEDIATE;
-							break;
-						case 2:
+						marks = scanner.nextDouble();
+						level = null;
+						if (marks > 75) {
 							level = Level.ADVANCE;
-							break;
+						} else {
+							if (marks > 65) {
+								level = Level.INTERMEDIATE;
+							} else {
+								level = Level.BEGINNER;
+							}
 						}
 						System.out.println(internsController.updateByLevel(id, level));
 						break;
