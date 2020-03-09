@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var app=angular.module("MyApp",[]);
+	app.controller("MyController1",($rootScope,$scope)=>{
+		$rootScope.firstName="Pranaw";
+		$rootScope.lastName="Kaushal";
+	});
+	app.controller("MyController2",($rootScope,$scope)=>{
+		$scope.firstName="Sid";
+		
+	});
+	
+	
+</script>
+</head>
+<body x-ng-app="MyApp">
+	<div x-ng-controller="MyController1">
+		<p>{{firstName + " "+lastName}}</p>
+	</div>
+	<div x-ng-controller="MyController2">
+		<p>{{firstName + " "+lastName}}</p>
+	</div>
+</body>
+</html>

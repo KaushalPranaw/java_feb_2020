@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="angular-route.js"></script>
+<script type="text/javascript">
+	var myApp=angular.module("myApp",['ngRoute']);
+	myApp.config(function($routeProvider){
+		$routeProvider
+		.when('/a',{
+			templateUrl:'demo19_a.htm',
+			controller:'MyController'
+		})
+		.when('/b',{
+			templateUrl:'demo19_b.htm',
+			controller:'MyController'
+		})
+		.when('/c',{
+			templateUrl:'demo19_c.htm',
+			controller:'MyController'
+		})
+		.otherwise({
+		    template : "<h1>None</h1><p>Nothing has been selected</p>"
+		});
+	});
+	
+	myApp.controller('MyController',['$scope','$http','$log',function($scope,$http,$log){
+		$scope.message="Yash Technologies";
+	}])
+
+	
+	
+</script>
+</head>
+<body x-ng-app="myApp" >
+	<p><a href='#'>Main page</a></p>
+	<p><a href='#/a'>A page</a></p>
+	<p><a href='#/b'>B page</a></p>
+	<p><a href='#/c'>C page</a></p>
+	<div x-ng-controller='MyController' x-ng-view>
+		
+	</div>
+	<div>
+		This content will not change
+	</div>
+</body>
+</html>

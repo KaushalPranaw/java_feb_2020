@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var app=angular.module('paymentApp',[]);
+	var paymentController=app.controller('paymentController',($scope)=>{
+		
+		
+	});
+	var creditController=app.controller('creditController',($scope)=>{
+		$scope.display=function(){
+			$scope.result="credit card payment done"
+		}
+	});
+	var debitController=app.controller('debitController',($scope)=>{
+		$scope.display=function(){
+			$scope.result="debit card payment done"
+		}
+	});
+	var netBankingController=app.controller('netBankingController',($scope)=>{
+		$scope.display=function(){
+			$scope.result="netbanking payment done"
+		}
+	});
+	
+	
+</script>
+</head>
+<body x-ng-app='paymentApp'>
+	<div x-ng-controller='paymentController'>
+		<input type="radio" x-ng-model='paymentbutton' value="credit">Credit Card
+		<input type="radio" x-ng-model='paymentbutton' value="debit">Debit Card
+		<input type="radio" x-ng-model='paymentbutton' value="netBanking"> Net Banking
+		<div x-ng-if='paymentbutton=="credit"' x-ng-controller='creditController'>
+			Number : <input type="text" x-ng-model="number"><br>
+			CVV : <input type="text" x-ng-model="cvv"><br>
+			<input type="button" value="submit" x-ng-click="display()">
+			<p>{{result}}</p>
+		</div>
+		<div x-ng-if='paymentbutton=="debit"' x-ng-controller='debitController'>
+			Number : <input type="text" x-ng-model="number" ><br>
+			CVV : <input type="text" x-ng-model="cvv"><br>
+			<input type="button" value="submit" x-ng-click="display()">
+			<p>{{result}}</p>
+		</div>
+		<div x-ng-if='paymentbutton=="netBanking"' x-ng-controller='netBankingController'>
+			Customer ID : <input type="text" x-ng-model="customerId"><br>
+			Password : <input type="password" x-ng-model="password"><br>
+			<input type="button" value="submit" x-ng-click="display()">
+			<p>{{result}}</p>
+		</div>
+		
+	</div>
+
+</body>
+</html>

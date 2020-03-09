@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="angular-locale_hi-in.js"></script>
+<script type="text/javascript">
+		angular.module('dateApp',[])
+		.controller('dateController',($scope)=>{
+			$scope.currentDate=new Date();
+		});
+		
+	</script>
+</head>
+<body x-ng-app="dateApp">
+	<div x-ng-controller="dateController">
+		<p>{{currentDate|date:'dd/MM/yyyy'}}</p>
+		<p>{{currentDate|date:'fullDate'}}</p>
+		<p>{{currentDate|date:'medium'}}</p>
+	</div>
+</body>
+</html>

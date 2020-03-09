@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html x-ng-app='employeeApp'>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var employeeApp=angular.module('employeeApp',[]);
+	employeeApp.service('employeeService',function(){
+		this.totalSalary=(employees)=>{
+			var total=0;
+			for(var i=0;i<employees.length;i++){
+				total+=employees[i].empSalary;
+			}
+			return total;
+		};
+		
+		this.average=(employees)=>{
+			var total=0;
+			for(var i=0;i<employees.length;i++){
+				total+=employees[i].empSalary;
+			}
+			return total/employees.length;
+		};
+	});
+	employeeApp.controller('employeeController',($scope,employeeService)=>{
+		$scope.employees=[
+			{'empId':1001,'empName':'pranaw','empSalary':344444,'empDesignation':'Trainer'},
+			{'empId':1002,'empName':'rahul','empSalary':356789,'empDesignation':'Programmer'},
+			{'empId':1003,'empName':'shubham','empSalary':45678,'empDesignation':'Developer'},
+			{'empId':1004,'empName':'reshma','empSalary':43563,'empDesignation':'Sales executive'}
+		];
+		$scope.totalSalary=employeeService.totalSalary($scope.employees);
+		$scope.average=employeeService.average($scope.employees);
+	});
+</script>
+</head>
+<body x-ng-controller='employeeController'>
+	<table border=1>
+			<tr>
+				<th style="background-color: olive;">Emp Id</th>
+				<th style="background-color: olive;">Emp Name</th>
+				<th style="background-color: olive;">Emp Salary</th>
+				<th style="background-color: olive;">Emp Designation</th>
+			</tr>
+			<tr x-ng-repeat='emp in employees'>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empId}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empId}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empName}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empName}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empSalary}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empSalary}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empDesignation}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empDesignation}}</td>
+			</tr>
+		</table>
+		
+		<p>Total Salary : {{totalSalary}}</p>
+		<p>Average : {{average}}</p>
+</body>
+</html>

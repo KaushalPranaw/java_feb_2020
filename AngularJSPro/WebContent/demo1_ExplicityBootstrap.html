@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		/* How x-ng-app works
+		it first create a document static then we have to make them dynamically so for that we are calling x-ng-controller
+		thus x-ng-app is loaded internally, we have done this explicitely
+	*/
+		var myApp = angular.module("MyApp", []);
+		myApp.controller("MyController", ($scope) => {
+			$scope.message = "Welcome to Yash Technologies...";
+		});
+		angular.element(document).ready(() => {
+			angular.bootstrap(document, ['MyApp']);
+		});
+
+	</script>
+</head>
+
+<body>
+	<div x-ng-controller="MyController">
+		<p>{{message}}</p>
+	</div>
+</body>
+
+</html>

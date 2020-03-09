@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html x-ng-app="myApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var myApp=angular.module("myApp",[]);
+	myApp.service('computeSQRTService',function(){
+		this.computeSQRT=(param)=>{
+			console.log("in function");
+			return Math.sqrt(param);
+		} 
+	});
+	
+	myApp.controller('computeController',['$scope','computeSQRTService',($scope,computeSQRTService)=>{
+		$scope.computeSQRT=()=>{
+			console.log("in controller");
+
+			$scope.result=computeSQRTService.computeSQRT($scope.number);
+		}
+		
+	}]);
+	
+</script>
+</head>
+<body>
+	<div x-ng-controller='computeController'>
+		<form action="">
+			Enter Number : <input type="number" placeholder="enter number"
+				x-ng-model='number'> <input type="button" value="compute"
+				x-ng-click='computeSQRT()'>
+		</form>
+
+		<p>{{result}}</p>
+	</div>
+</body>
+</html>

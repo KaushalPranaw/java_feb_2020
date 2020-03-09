@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+		angular.module('stringApp',[])
+		.controller('stringController',($scope)=>{
+			$scope.names=["pranaw","sumit","sid"];
+		});
+		
+	</script>
+</head>
+<body x-ng-app="stringApp">
+	<div x-ng-controller="stringController">
+		<ul x-ng-repeat='x in names'>
+			<!-- <li x-ng-bind='x | uppercase'></li> -->
+			<li>{{x | uppercase}}</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var locationApp=angular.module('locationApp',[]);
+	locationApp.controller('locationController',($scope,$location)=>{
+		$scope.locationURL=$location.absUrl();
+		$scope.port=$location.port();
+		$scope.host=$location.host();
+	})
+</script>
+</head>
+<body x-ng-app="locationApp" x-ng-controller="locationController">
+	{{locationURL}} <br>{{port}} <br> {{host}}
+</body>
+</html>

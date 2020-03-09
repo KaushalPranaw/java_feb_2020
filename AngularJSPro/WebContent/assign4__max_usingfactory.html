@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var factoryApp=angular.module("factoryApp",[]);
+	factoryApp.factory("factory",()=>{
+		return {
+			getMax:(amounts)=>{
+				var max=amounts[0];
+				for(var i=1;i<amounts.length;i++){
+					if(max<amounts[i])
+						max=amounts[i];
+				}
+				return max;
+			}
+		};
+	});
+	factoryApp.controller('factoryController',($scope,factory)=>{
+		$scope.amounts=[23455,85678,45678,45678];
+		$scope.max=factory.getMax($scope.amounts);
+	})
+</script>
+</head>
+<body x-ng-app="factoryApp" x-ng-controller="factoryController">
+	<p>Max  : {{max}}</p>
+</body>
+</html>

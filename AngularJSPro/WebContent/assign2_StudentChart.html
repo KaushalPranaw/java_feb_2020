@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var studentApp = angular.module('studentApp', []);
+	var studentController=studentApp.controller('studentController',($scope)=>{
+		$scope.students=[
+			{"studentRollNo":1001,"studentName":"Pranaw","sem1":750,"sem2":840,"sem3":570},
+			{"studentRollNo":1002,"studentName":"Rahul","sem1":730,"sem2":640,"sem3":870},
+			{"studentRollNo":1003,"studentName":"Sid","sem1":710,"sem2":460,"sem3":550},
+			{"studentRollNo":1004,"studentName":"Pooja","sem1":450,"sem2":640,"sem3":590}
+		];
+		
+		$scope.average=(student)=>{
+			$scope.result=(student.sem1+student.sem2+student.sem3)/3;
+		}
+		$scope.percent=(student)=>{
+			$scope.percentage=(student.sem1+student.sem2+student.sem3)/3000;
+		}
+		$scope.addFlag=false;
+		$scope.add=()=>{
+			$scope.addFlag=true;
+		};
+		$scope.cancel=()=>{
+			$scope.addFlag=false;
+		};
+		$scope.addStudent=(student)=>{
+			$scope.students.push(student);
+			$scope.size=$scope.students.length;
+			$scope.addFlag=false;
+		};
+	});
+</script>
+</head>
+<body x-ng-app='studentApp'>
+	<div x-ng-controller='studentController'>
+		<table border="1">
+			<tr>
+				<th>Student RollNo</th>
+				<th>Student Name</th>
+				<th>Student Semester 1</th>
+				<th>Student Semester 2</th>
+				<th>Student Semester 3</th>
+				<th>Avg</th>
+				<th>Percenatge</th>
+			</tr>
+			<tr x-ng-repeat='student in students'>
+				<td>{{student.studentRollNo}}</td>
+				<td>{{student.studentName}}</td>
+				<td>{{student.sem1}}</td>
+				<td>{{student.sem2}}</td>
+				<td>{{student.sem3}}</td>
+				<td><input type="button" value="Average" x-ng-click='average(student)'></td>
+				<td><input type="button" value="Percentage" x-ng-click='percent(student)'></td>
+			</tr>
+
+		</table>
+		<p x-ng-if='result!=null'>Average = {{result}}</p>
+		<p x-ng-if='percentage!=null'>Percentage = {{percentage}}</p>
+		<input type="button" value="Add Student" x-ng-click='add()'>
+		
+		<div x-ng-if='addFlag'>
+			Student RollNo :  <input type="text" x-ng-model='student.studentRollNo'><br>
+			Student Name :  <input type="text" x-ng-model='student.studentName'><br>
+			Student Sem 1 :  <input type="number" x-ng-model='student.sem1'><br>
+			Student Sem 2 :  <input type="number" x-ng-model='student.sem2'><br>
+			Student Sem 3 :  <input type="number" x-ng-model='student.sem3'><br>
+			 <input type="button" value="Add Student" x-ng-click='addStudent(student)'>
+			<input type="button" value="cencel" x-ng-click='cancel()'>
+		</div>
+		<p x-ng-if='size!=null'>"Student Size = "{{size}}</p>
+	</div>
+</body>
+</html>

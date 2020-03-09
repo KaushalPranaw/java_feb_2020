@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript">
+		
+		var myApp = angular.module("MyApp", []);
+		myApp.controller("MyController", ($scope) => {
+			$scope.name2=$scope.name1;
+		});
+	</script>
+</head>
+<body>
+	<div x-ng-app="MyApp" x-ng-controller="MyController">
+		TextBox 1: <input type="text" x-ng-model="name1"><br>
+		TextBox 2: <input type="text" x-ng-model="name2">
+		<p x-ng-bind="name2"></p>
+	</div>
+</body>
+
+</html>

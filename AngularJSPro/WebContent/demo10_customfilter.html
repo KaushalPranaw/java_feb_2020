@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	 angular.module('customFilterApp',[])
+	 .controller('customFilterController',($scope)=>{
+		 $scope.employees=[
+			 {'empId':1001,'empName':'pranaw','empSalary':344444,'empDesignation':'Trainer'},
+				{'empId':1002,'empName':'rahul','empSalary':356789,'empDesignation':'Programmer'},
+				{'empId':1003,'empName':'shubham','empSalary':45678,'empDesignation':'Developer'},
+				{'empId':1004,'empName':'reshma','empSalary':43563,'empDesignation':'Sales executive'}
+		 ];
+	 })
+	 .filter('tax',()=>{
+		return function(empSalary){
+			if(empSalary > 50000){
+				tax=empSalary*0.15;
+			}
+			else if(empSalary>44000 && empSalary<50000){
+					tax=empSalary*0.10;
+			}
+			else{
+				tax=empSalary*0.05;
+			}
+			return tax;
+		}	 
+	 });
+</script>
+</head>
+<body x-ng-app='customFilterApp'>
+	<div x-ng-controller='customFilterController'>
+		<ul>
+			<li>EmpSalary Tax</li>
+		</ul>
+		<ul x-ng-repeat="emp in employees">
+			<li>{{emp.empSalary}} {{emp.empSalary |tax}}</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+		var app=angular.module('MyApp',[]);
+		
+/* 		app.controller('MyController',($scope)=>{
+			$scope.msg="Welcome to Yash";
+		}) */
+		app.controller('MyController',['$scope',($scope)=>{
+			$scope.msg="Welcome to Yash";
+		}])
+		
+		var MyController1= app.controller('MyController1',controllerfunc);
+		
+		
+		function controllerfunc($scope){
+			$scope.msg1="Welcome to Yash again";
+		}
+		
+		controllerfunc.$inject=['$scope'];
+		
+	</script>
+</head>
+<body x-ng-app="MyApp" x-ng-strict-di>
+	<div  x-ng-controller="MyController">
+		<p>{{msg}}</p>
+	</div>
+	<div  x-ng-controller="MyController1">
+		<p>{{msg1}}</p>
+	</div>
+</body>
+</html>

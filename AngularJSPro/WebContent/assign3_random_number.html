@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html x-ng-app="myApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var myApp=angular.module("myApp",[]);
+	myApp.service('computeRandomNumberService',function(){
+		this.computeRandom=()=>{
+			return parseInt(Math.random()*1000000);
+		}    
+	});
+	
+	myApp.controller('computeController',['$scope','computeRandomNumberService',($scope,computeRandomNumberService)=>{
+		$scope.getRand=()=>{
+			$scope.result=computeRandomNumberService.computeRandom();
+		}
+	}]);
+	
+</script>
+</head>
+<body>
+	<div x-ng-controller='computeController'>
+		<form action="">
+			<input type="button" value="get Random" x-ng-click='getRand()'>
+		</form>
+
+		<p>{{result}}</p>
+	</div>
+</body>
+</html>

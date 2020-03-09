@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var factoryApp=angular.module("factoryApp",[]);
+	factoryApp.factory("total",()=>{
+		return {
+			getTotal:(amounts)=>{
+				var total=0;
+				for(var i=0;i<amounts.length;i++){
+					total+=amounts[i];
+				}
+				return total;
+			}
+		};
+	});
+	factoryApp.controller('factoryController',($scope,total)=>{
+		$scope.amounts=[23455,85678,45678,45678];
+		$scope.total=total.getTotal($scope.amounts);
+	})
+</script>
+</head>
+<body x-ng-app="factoryApp" x-ng-controller="factoryController">
+	<p>Total amounts : {{total}}</p>
+</body>
+</html>

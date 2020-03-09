@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html x-ng-app="timeoutApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var timeoutApp=angular.module('timeoutApp',[]);
+	timeoutApp.controller('timeoutController',($scope)=>{
+		$scope.message="Yash Technologies";
+		setTimeout(() => {
+			$scope.message="Welcome have a great time";
+			$scope.$apply();
+		}, 2000);
+	})
+</script>
+</head>
+<body x-ng-controller="timeoutController">
+	{{message}}
+</body>
+</html>

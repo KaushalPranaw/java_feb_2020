@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	angular.module('employeeApp',[])
+	.controller('employeeController',($scope)=>{
+		 $scope.employees=[
+			 {'empId':1001,'empName':'pranaw','empSalary':344444,'empDesignation':'Trainer'},
+				{'empId':1005,'empName':'rahul','empSalary':356789,'empDesignation':'Programmer'},
+				{'empId':1003,'empName':'shubham','empSalary':45678,'empDesignation':'Developer'},
+				{'empId':1004,'empName':'reshma','empSalary':43563,'empDesignation':'Sales executive'}
+		 ];
+		 $scope.orderAttr="empId";
+		 $scope.doOrdering=(order)=>{
+			 $scope.orderAttr=order;
+		 }
+	});
+</script>
+</head>
+<body x-ng-app="employeeApp">
+	<div x-ng-controller='employeeController'>
+		<table border="1">
+			<tr>
+				<th x-ng-click="doOrdering('empId')">Emp Id</th>
+				<th x-ng-click="doOrdering('empName')">Emp Name</th>
+				<th x-ng-click="doOrdering('empSalary')">Emp Salary</th>
+				<th x-ng-click="doOrdering('empDesignation')">Emp Designation</th>
+			</tr>
+			
+			<tr x-ng-repeat='emp in employees |filter:empIdText |orderBy:orderAttr'>
+				<td>{{emp.empId}}</td>
+				<td>{{emp.empName}}</td>
+				<td>{{emp.empSalary}}</td>
+				<td>{{emp.empDesignation}}</td>
+			</tr>
+		</table>
+		<form>
+			Emp id : <input type="text" x-ng-model="empIdText.empId"/>
+		</form>
+	</div>
+</body>
+</html>

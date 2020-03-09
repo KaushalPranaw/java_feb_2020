@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html x-ng-app='LogModule'>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var logModule=angular.module('LogModule',[]);
+	logModule.controller('LogController',['$scope','$log',($scope,$log)=>{
+		$log.warn("This is warning message");
+		$log.error("This is error message");
+		$log.debug("This is debug message");
+		$log.info("This is informative message")
+	}]);
+</script>
+</head>
+<body x-ng-controller="LogController">
+
+</body>
+</html>

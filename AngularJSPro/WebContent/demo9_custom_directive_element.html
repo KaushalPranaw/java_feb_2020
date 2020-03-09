@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html  x-ng-app="EmployeeApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var employeeApp=angular.module("EmployeeApp",[]);
+	employeeApp.controller('employeeController',($scope)=>{
+		$scope.employees=[
+			{'empId':1001,'empName':'pranaw','empSalary':344444,'empDesignation':'Trainer'},
+			{'empId':1002,'empName':'rahul','empSalary':356789,'empDesignation':'Programmer'},
+			{'empId':1003,'empName':'shubham','empSalary':45678,'empDesignation':'Developer'},
+			{'empId':1004,'empName':'reshma','empSalary':43563,'empDesignation':'Sales executive'}
+		];
+	})
+	employeeApp.directive("dis",()=>{
+		return {
+			restrict:"E",
+			transclude: "true",
+			template:'<span ng-transclude><span>',
+			link:function(scope,element,attr)
+			{
+				element.append("<td>"+attr.empId+"</td>")
+				element.append("<td>"+attr.empName+"</td>")
+				element.append("<td>"+attr.empSalary+"</td>")
+				element.append("<td>"+attr.empDesignation+"</td>");
+			}
+		};
+	});
+</script>
+</head>
+<body>
+	<div x-ng-controller="employeeController">
+		<table>
+			<tr>
+				<th>Emp Id</th>
+				<th>Emp Name</th>
+				<th>Emp Salary</th>
+				<th>Emp Designation</th>
+			</tr>
+			<tr x-ng-repeat='emp in employees'>
+				<dis empId='{{emp.empId}}'></dis>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
