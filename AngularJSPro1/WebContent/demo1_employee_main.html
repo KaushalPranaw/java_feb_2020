@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html x-ng-app="employeeApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="angular-route.js"></script>
+<script type="text/javascript">
+	var app = angular.module("employeeApp", [ 'ngRoute' ]);
+	app.config(function($routeProvider) {
+		$routeProvider.when('/displayEmployee', {
+			templateUrl : 'demo1_displayEmployee.htm',
+			controller : 'EmployeeController'
+		}).when('/addEmployee', {
+			templateUrl : 'demo1_employeeForm.htm',
+			controller : 'EmployeeController'
+		})
+	});
+
+	app.service('employeeService', function() {
+		var counter = 0;
+		this.employees = new Array();
+		this.addEmployee = function(e) {
+			console.log("add() service")
+			console.log(e)
+			if (counter == 0) {
+				this.employees.push(e);
+				console.log(this.employees);
+			} else {
+				var flag = false;
+				for (var i = 0; i < this.employees.length; i++) {
+					if (e.empId == this.employees[i].empId) {
+						flag = true;
+					}
+				}
+				if (!flag) {
+					this.employees.push(e);
+					console.log(this.employees);
+				}
+				counter++;
+			}
+		}
+		this.getEmployee = function() {
+			console.log("get() service")
+			console.log(this.employees);
+			return this.employees;
+		}
+
+	});
+
+	app.controller('EmployeeController', [ '$rootScope', '$scope', '$log',
+			'$http', 'employeeService',
+			function($rootScope, $scope, $log, $http, employeeService) {
+				$rootScope.employees = new Array();
+				$scope.insert = function(e) {
+					console.log('aaaaa')
+					console.log(e)
+					employeeService.addEmployee(e);
+				};
+				$rootScope.employees = employeeService.getEmployee();
+				console.log($rootScope.employees);
+			} ]);
+</script>
+</head>
+<body>
+
+	<p>
+		<a href='#/'>Main Page</a>
+	</p>
+	<p>
+		<a href='#/addEmployee'>Add Employee</a>
+	</p>
+	<p>
+		<a href='#/displayEmployee'>Display Employee</a>
+	</p>
+	<div x-ng-controller='EmployeeController' x-ng-view></div>
+</body>
+</html>

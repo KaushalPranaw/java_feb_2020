@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var employeeApp=angular.module("employeeApp",[]);
+	employeeApp.controller("employeeController",['$scope','$http','$log',($scope,$http,$log)=>{
+		$http({url:'getAllEmployee',method:'GET'})
+		.then(
+				(response)=>
+				{
+					$scope.emps=response.data
+				},
+				(err)=>
+				{
+					$log.error(err);
+				}
+			);
+	}]);
+	
+	
+</script>
+</head>
+<body x-ng-app="employeeApp" x-ng-controller='employeeController'>
+	<table border=1>
+			<tr>
+				<th style="background-color: olive;">Emp Id</th>
+				<th style="background-color: olive;">Emp Name</th>
+				<th style="background-color: olive;">Emp Salary</th>
+				<th style="background-color: olive;">Emp Designation</th>
+			</tr>
+			<tr x-ng-repeat='emp in emps'>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empId}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empId}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empName}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empName}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empSalary}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empSalary}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empDesignation}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empDesignation}}</td>
+			</tr>
+		</table>
+</body>
+</html>

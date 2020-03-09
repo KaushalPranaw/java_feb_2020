@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border=1>
+			<tr>
+				<th style="background-color: olive;">Emp Id</th>
+				<th style="background-color: olive;">Emp Name</th>
+				<th style="background-color: olive;">Emp Salary</th>
+				<th style="background-color: olive;">Emp Designation</th>
+			</tr>
+			<tr x-ng-repeat='emp in employees'>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empId}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empId}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empName}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empName}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empSalary}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empSalary}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{emp.empDesignation}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{emp.empDesignation}}</td>
+			</tr>
+		</table>
+</body>
+</html>

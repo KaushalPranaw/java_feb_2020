@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="angular-route.js"></script>
+<script type="text/javascript">
+	var app=angular.module("MyApp",[]);
+	app.controller('postEmployeeController',['$scope','$log','$http',function($scope,$log,$http){
+		$scope.check=function(){
+
+			if($scope.emp.empId!=null){
+				$http({url:'postEmployee?empId='+$scope.emp.empId,method:'GET'})
+				.then(
+						res=>
+							{
+								$scope.result=res.data;
+								if($scope.result=='exists')
+									$scope.exists=true;
+								else
+									$scope.exists=false;
+							},
+						err=>$log.error(err)
+						);
+				
+			};
+			}
+			
+		$scope.insert=(emp)=>{
+			console.log(emp)
+			$http(
+					{
+						url:'postEmployee',
+						method:'POST',
+						data:
+							{
+								'empId':emp.empId,
+								'empName':emp.empName,
+								'empSalary':emp.empSalary,
+								'empDesignation':emp.empDesignation
+							}
+					}
+				)
+			.then
+			(
+				res=>$scope.msg=res.data,
+				err=>$log.error(err)
+			)
+		} 
+	}]);
+	
+	
+</script>
+</head>
+<body x-ng-app="MyApp" x-ng-controller='postEmployeeController'>
+	<form name="empForm" action="" novalidate="novalidate">
+		<table>
+			<tr>
+				<td>Employee ID:</td>
+				<td><input type="text" name='empId' x-ng-model='emp.empId'
+					x-ng-minlength="4" x-ng-maxlength="7" x-ng-change='check()' 
+					required="required"> 
+					<span style="color: red"
+					x-ng-show="empForm.empId.$dirty && empForm.empId.$invalid">Employee
+						id not valid</span> 
+					<span style="color: red" x-ng-show="exists && empForm.empId.$valid">Employee
+						id already exists</span></td>
+			</tr>
+			<tr>
+				<td>Employee Name:</td>
+				<td><input type="text" name='empName' x-ng-model='emp.empName'
+					required="required"> <span style="color: red"
+					x-ng-show="empForm.empName.$error.required">Employee name
+						can't be blank</span></td>
+			</tr>
+			<tr>
+				<td>Employee Salary:</td>
+				<td><input type="number" name='empSalary'
+					x-ng-model='emp.empSalary' x-ng-minlength='5' x-ng-maxlength='7'>
+					<span style="color: red"
+					x-ng-show="empForm.empSalary.$dirty && empForm.empSalary.$invalid">
+						Employee salary out from rangek</span></td>
+			</tr>
+			<tr>
+				<td>Employee Designation:</td>
+				<td><input type="text" name='empDesignation'
+					x-ng-model='emp.empDesignation' disabled="disabled"> <select
+					x-ng-model='emp.empDesignation' autofocus="autofocus">
+						<option>Trainee</option>
+						<option>Developer</option>
+						<option>DevOps</option>
+						<option>SAP</option>
+				</select></td>
+			</tr>
+			<tr>
+
+				<td><input type="button" value="insert"
+					x-ng-disabled="empForm.$invalid" x-ng-click='insert(emp)'></td>
+			</tr>
+		</table>
+
+	</form>
+	<p>{{msg}}</p>
+</body>
+</html>

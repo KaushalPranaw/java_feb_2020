@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body >
+	<table border=1>
+			<tr>
+				<th style="background-color: olive;">Item Id</th>
+				<th style="background-color: olive;">Item Name</th>
+				<th style="background-color: olive;">Item Price</th>
+				<th style="background-color: olive;">option</th>
+				
+			</tr>
+			<tr x-ng-repeat='item in cartList'>
+				<td x-ng-if='$odd' style="background-color: green;">{{item.itemId}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{item.itemId}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{item.itemName}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{item.itemName}}</td>
+				<td x-ng-if='$odd' style="background-color: green;">{{item.itemPrice}}</td>
+				<td x-ng-if='$even' style="background-color: yellow;">{{item.itemPrice}}</td>
+				<td x-ng-if='$odd' style="background-color: green;"><input type="button" x-ng-click='removeItem(item)' value="delete"> </td>
+				<td x-ng-if='$even' style="background-color: yellow;"><input type="button" x-ng-click='removeItem(item)' value="delete"></td>
+			</tr>
+		</table>
+</body>
+</html>

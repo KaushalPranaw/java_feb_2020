@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+</head>
+<body>
+	<form name="empForm" action="" novalidate="novalidate">
+		<table>
+			<tr>
+				<td>Employee ID:</td>
+				<td>
+					<input type="text" name='empId' x-ng-model='emp.empId' x-ng-minlength="4" x-ng-maxlength="7" required="required">
+					<span style="color:red" x-ng-show="empForm.empId.$dirty && empForm.empId.$invalid">Employee id not valid</span>
+				</td>
+			</tr>
+			<tr>
+				<td>Employee Name:</td>
+				<td>
+					<input type="text" name='empName' x-ng-model='emp.empName' required="required">
+					<span style="color:red" x-ng-show="empForm.empName.$error.required">Employee name can't be blank</span>
+				</td>
+			</tr>
+			<tr>
+				<td>Employee Salary:</td>
+				<td>
+					<input type="number" name='empSalary' x-ng-model='emp.empSalary' x-ng-minlength='5' x-ng-maxlength='7'>
+										<span style="color:red" x-ng-show="empForm.empSalary.$dirty && empForm.empSalary.$invalid"> Employee salary out from rangek</span>
+				</td>
+			</tr>
+			<tr>
+				<td>Employee Designation:</td>
+				<td>
+					<input type="text" name='empDesignation' x-ng-model='emp.empDesignation' disabled="disabled">
+					<select x-ng-model='emp.empDesignation' autofocus="autofocus" >
+						<option>Trainee</option>
+						<option>Developer</option>
+						<option>DevOps</option>
+						<option>SAP</option>
+					</select>	
+				</td>
+			</tr>
+			<tr>
+
+				<td><input type="button" value="insert" x-ng-disabled="empForm.$invalid"
+					x-ng-click='insert(emp)'></td>
+			</tr>
+		</table>
+
+	</form>
+</body>
+</html>

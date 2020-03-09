@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="">
+		<table>
+			<tr>
+				<td>Item ID:</td>
+				<td><input type="text" x-ng-model='item.itemId'></td>
+			</tr>
+			<tr>
+				<td>Item Name:</td>
+				<td><input type="text" x-ng-model='item.itemName'></td>
+			</tr>
+			<tr>
+				<td>Item Price:</td>
+				<td><input type="text" x-ng-model='item.itemPrice'></td>
+			</tr>
+			
+			
+			<tr>
+
+				<td><input type="button" value="Add To Cart"
+					x-ng-click='insert(item)'></td>
+			</tr>
+		</table>
+
+	</form>
+</body>
+</html>

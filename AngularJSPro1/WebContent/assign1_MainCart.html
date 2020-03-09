@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html x-ng-app="cartApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript" src="angular-route.js"></script>
+<script type="text/javascript">
+	var cartApp = angular.module("cartApp", [ 'ngRoute' ]);
+	cartApp.config(function($routeProvider) {
+		$routeProvider
+		.when('/items', {
+			templateUrl : 'assign1_displayCart.htm',
+			controller : 'cartController'
+		})
+		.when('/add', {
+			templateUrl : 'assign1_addToCart.htm',
+			controller : 'cartController'
+		})
+		.when('/delete', {
+			templateUrl : 'assign1_deleteFromCart.htm',
+			controller : 'cartController'
+		});
+		
+
+	});
+
+	cartApp.service('cartService', function() {
+		var counter = 0;
+		this.cartList = new Array();
+		this.addItem = function(item) {
+			console.log("add service")
+			console.log(item)
+			if (counter == 0) {
+				this.cartList.push(item);
+				console.log(this.cartList)
+			} else {
+				var flag = false;
+				for (var i = 0; i < this.cartList.length; i++) {
+					if (item.itemId == this.cartList[i].itemId) {
+						flag = true;
+					}
+				}
+				if (!flag) {
+					this.cartList.push(item);
+					console.log(this.cartList)
+				}
+				counter++;
+			}
+		}
+
+		this.getAllItem = function() {
+			console.log("get service")
+			console.log(this.cartList)
+			return this.cartList;
+		}
+
+		this.removeItem = function(item) {
+			console.log("delete service")
+			console.log(item)
+			for (var i = 0; i < this.cartList.length; i++) {
+				if (item.itemId == this.cartList[i].itemId) {
+					this.cartList.splice(i, 1);
+				}
+			}
+		}
+	});
+	cartApp.controller('cartController',function($scope,$rootScope,cartService){
+		$rootScope.cartList=new Array();
+		
+		$scope.insert=(item)=>{
+			console.log("insert controller")
+			cartService.addItem(item);
+		}
+		
+		$rootScope.cartList=cartService.getAllItem();
+		
+		$scope.removeItem=(item)=>{
+			console.log("delete controller")
+			cartService.removeItem(item);
+		}
+	})
+	</script>
+</head>
+<body x-ng-controller='cartController'>
+	<p><a href='#/items'>Get All Items</a></p>
+	<p><a href='#/add'>Add Items</a></p>
+	<div x-ng-view>
+	</div>
+</body>
+</html>

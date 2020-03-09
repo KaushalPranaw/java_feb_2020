@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var ajaxApp=angular.module("ajaxApp",[]);
+	ajaxApp.controller('ajaxController',['$scope','$http','$log',($scope,$http,$log)=>
+	{
+		$http({url:"ajax",method:'GET'}).then
+		(
+				(response)=>
+				{
+					$scope.message=response.data
+				},
+				(err)=>
+				{
+					$log.error(err);
+				}
+		);
+	}]);
+	
+	
+</script>
+</head>
+<body x-ng-app="ajaxApp" x-ng-controller='ajaxController'>
+	{{message}}
+</body>
+</html>

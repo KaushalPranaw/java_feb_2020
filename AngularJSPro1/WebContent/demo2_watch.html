@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var watchApp=angular.module("watchApp",[]);
+	watchApp.controller('watchController',function($scope){
+		$scope.a=1;
+		$scope.$watch('a',function(newValue,oldValue){
+			$scope.aOldValue=oldValue;
+			$scope.aNewValue=newValue;
+			
+		});
+		$scope.modify=()=>{
+			$scope.a=2;
+		}
+		
+	})
+	
+	
+</script>
+</head>
+<body x-ng-app="watchApp" x-ng-controller='watchController'>
+	<input type="button" x-ng-click='modify()' value="modify">
+	<div>
+		<p>Old value : {{aOldValue}}</p>
+		<p>New value : {{aNewValue}}</p>
+	</div>
+</body>
+</html>
