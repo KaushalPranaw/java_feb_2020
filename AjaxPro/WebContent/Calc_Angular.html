@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html x-ng-app="CalcApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="angular.min.js"></script>
+<script type="text/javascript">
+	var calcApp=angular.module("CalcApp",[]);
+	calcApp.controller("CalcController",function($scope){
+		$scope.add=()=>{
+			$scope.result=$scope.number1+$scope.number2;
+		}
+		$scope.sub=()=>{
+			$scope.result=$scope.number1-$scope.number2;
+		}
+		$scope.mul=()=>{
+			$scope.result=$scope.number1*$scope.number2;
+		}
+		$scope.div=()=>{
+			$scope.result=$scope.number1/$scope.number2;
+		}
+		
+	})
+</script>
+</head>
+
+<body>
+	<div x-ng-controller="CalcController">
+		<form action="">
+			Number 1 : <input type="number" x-ng-model='number1'><br>
+			Number 2 : <input type="number" x-ng-model='number2'><br>
+			<input type="button" value="add" x-ng-click='add()'> <input
+				type="button" value="sub" x-ng-click='sub()'> <input
+				type="button" value="mul" x-ng-click='mul()'> <input
+				type="button" value="div" x-ng-click='div()'>
+
+		</form>
+		<br>Result : <input type="text" x-ng-model="result" placeholder="result"
+			readonly="readonly">
+	</div>
+
+</body>
+</html>

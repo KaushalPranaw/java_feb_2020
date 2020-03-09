@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html x-ng-app="MyApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="angular.min.js"></script>
+<script type="text/javascript">
+	var myApp = angular.module("MyApp", []);
+	/* scope is the glue between controller and view */
+	myApp.controller("MyController", function($scope) {
+		
+		$scope.change = function() {
+			
+			$scope.putdata = $scope.textbox;
+		};
+
+	});
+</script>
+</head>
+<body>
+	<div x-ng-controller="MyController">
+		<p>{{putdata}}</p>
+
+
+		<form action="">
+			<input type="text" x-ng-model="textbox" x-ng-blur="change()" />
+		</form>
+	</div>
+</body>
+</html>

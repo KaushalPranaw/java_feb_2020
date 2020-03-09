@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var xhr = getXMLHttp();
+
+	function getXMLHttp() {
+		var xmlhttp = null;
+		if (window.XMLHttpRequest) {
+			xmlhttp = new XMLHttpRequest();
+		} else {
+			try {
+				xmlhttp = new ActiveXObject(Msxml2.XMLHTTP);
+			} catch (e) {
+				xmlhttp = new ActiveXObject(Microsoft.XMLHTTP);
+			}
+		}
+		return xmlhttp;
+	}
+	function getData() {
+		xhr.open("GET", "Data.txt", true);
+		xhr.onreadystatechange = callback;
+		xhr.send(null);
+	}
+	function callback() {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			var data = xhr.responseText;
+			var p = document.createElement("p");
+			p.innerHTML = data;
+			var b1 = document.getElementById("b1");
+			b1.setAttribute("value", "Clicked");
+			document.body.appendChild(p);
+		}
+	}
+</script>
+</head>
+<body>
+	<form action="">
+		<input type="button" id="b1" value="Click" onclick="getData()">
+	</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="AjaxObject.js"></script>
+<script type="text/javascript">
+	function getData() {
+		var xhr=getXMLHttp();
+		var user=document.getElementById("username").value;
+		xhr.open("GET","converter?username="+user,true);
+		xhr.onreadystatechange=()=>{
+			if(xhr.readyState==4 && xhr.status==200)
+				{
+					var data=xhr.responseText;
+					var p=document.createElement("p");
+					p.innerHTML=data;
+					document.body.appendChild(p);
+				}
+			
+		}
+		xhr.send(null)
+		
+	}
+</script>
+</head>
+<body>
+	<form action="">
+		UserName : <input type="text" id="username" name="username"
+			placeholder="username"> <br> <input type="button"
+			value="CLick" onclick="getData()">
+	</form>
+</body>
+</html>

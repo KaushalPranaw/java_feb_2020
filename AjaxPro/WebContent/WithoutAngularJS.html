@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript" src="AjaxObject.js"></script>
+<script type="text/javascript">
+	var xhr=getXMLHttp();
+	function change()
+	{	
+		var textbox=document.getElementById("textbox").value;
+		document.getElementById("p1").innerHTML=textbox;
+	}
+	
+</script>
+<body>
+<p id="p1"></p>
+<form action="">
+	<input type="text" name="textbox" id="textbox" onblur="change()">
+</form>
+</body>
+</html>

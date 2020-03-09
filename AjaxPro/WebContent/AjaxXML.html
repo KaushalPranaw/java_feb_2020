@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="AjaxObject.js">
+	
+</script>
+<script type="text/javascript">
+	var xhr = getXMLHttp();
+	function getData() {
+		xhr.open("GET","employees.xml",true);
+		xhr.onreadystatechange=()=>{
+			if(xhr.readyState==4 && xhr.status==200){
+				
+				var data=xhr.responseXML;
+				var company=data.documentElement;
+				var p=document.createElement("p");
+				p.innerHTML=company.getAttribute("companyName");
+				document.body.appendChild(p);
+				
+				var employees=data.getElementsByTagName("employee")
+				
+				var table=document.createElement("table");
+				
+				var headerRow=document.createElement("tr");
+				
+				var empIdTh=document.createElement("th");
+				var empIdThText=document.createTextNode("Employee ID");
+				empIdTh.appendChild(empIdThText);
+				headerRow.appendChild(empIdTh);
+				
+				
+				var empNameTh=document.createElement("th");
+				var empNameThText=document.createTextNode("Employee Name");
+				empNameTh.appendChild(empNameThText);
+				headerRow.appendChild(empNameTh);
+				
+				table.appendChild(headerRow);
+				
+				
+				for(var i=0;i<employees.length;i++){
+					var tableRow=document.createElement("tr");
+					
+					var rowtdId=document.createElement("td");
+					var rowtdIdText=document.createTextNode(employees[i].getAttribute("employeeId"));
+					rowtdId.appendChild(rowtdIdText);
+					tableRow.appendChild(rowtdId);
+					
+					var rowtdName=document.createElement("td");
+					var rowtdNameText=document.createTextNode(employees[i].getAttribute("employeeName"));
+					rowtdName.appendChild(rowtdNameText);
+					tableRow.appendChild(rowtdName);
+					
+					table.appendChild(tableRow);
+				}
+				document.body.appendChild(table);
+			}
+			
+		}
+		xhr.send(null);
+	}
+</script>
+</head>
+<body>
+	<form action="">
+		<input type="button" value="click" onclick="getData()">
+	</form>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="AjaxObject.js"></script>
+<script type="text/javascript">
+	function add() {
+		var xhr=getXMLHttp();
+		var first=document.getElementById("first").value;
+		var second=document.getElementById("second").value;
+		xhr.open("GET","calc?first="+first+"&second="+second+"&method=add",true);
+		xhr.onreadystatechange=()=>{
+			if(xhr.readyState==4 && xhr.status==200)
+				{
+					var data=xhr.responseText;
+					var p=document.createElement("p");
+					p.innerHTML=data;
+					document.body.appendChild(p);
+				}
+			
+		}
+		xhr.send(null)
+		
+	}
+	function sub() {
+		var xhr=getXMLHttp();
+		var first=document.getElementById("first").value;
+		var second=document.getElementById("second").value;
+		xhr.open("GET","calc?first="+first+"&second="+second+"&method=sub",true);
+		xhr.onreadystatechange=()=>{
+			if(xhr.readyState==4 && xhr.status==200)
+				{
+					var data=xhr.responseText;
+					var p=document.createElement("p");
+					p.innerHTML=data;
+					document.body.appendChild(p);
+				}
+			
+		}
+		xhr.send(null)
+		
+	}
+	function mul() {
+		var xhr=getXMLHttp();
+		var first=document.getElementById("first").value;
+		var second=document.getElementById("second").value;
+		xhr.open("GET","calc?first="+first+"&second="+second+"&method=mul",true);
+		xhr.onreadystatechange=()=>{
+			if(xhr.readyState==4 && xhr.status==200)
+				{
+					var data=xhr.responseText;
+					var p=document.createElement("p");
+					p.innerHTML=data;
+					document.body.appendChild(p);
+				}
+			
+		}
+		xhr.send(null)
+		
+	}
+	function div() {
+		var xhr=getXMLHttp();
+		var first=document.getElementById("first").value;
+		var second=document.getElementById("second").value;
+		xhr.open("GET","calc?first="+first+"&second="+second+"&method=div",true);
+		xhr.onreadystatechange=()=>{
+			if(xhr.readyState==4 && xhr.status==200)
+				{
+					var data=xhr.responseText;
+					var p=document.createElement("p");
+					p.innerHTML=data;
+					document.body.appendChild(p);
+				}
+			
+		}
+		xhr.send(null)
+		
+	}
+</script>
+</head>
+<body>
+<form action="">
+	First Number : <input  type="number" name="first" id="first" placeholder="first number"> <br>
+	Second Number : <input  type="number" name="second" id="second" placeholder="second number"> <br>
+	 <input  type="button" value="add" onclick="add()">
+	 <input  type="button" value="sub" onclick="sub()">
+	 <input  type="button" value="mul" onclick="mul()">
+	 <input  type="button" value="div" onclick="div()"> 
+</form>
+</body>
+</html>

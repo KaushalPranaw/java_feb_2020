@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function add(){
+		var first=parseInt(document.getElementById("first").value);
+		var second=parseInt(document.getElementById("second").value);
+		var data=first+second;
+		var p=document.createElement("p");
+		p.innerHTML="Sum = "+data;
+		document.body.appendChild(p);
+	}
+	function sub(){
+		var first=parseInt(document.getElementById("first").value);
+		var second=parseInt(document.getElementById("second").value);
+		var data=first-second;
+		var p=document.createElement("p");
+		p.innerHTML="Sub = "+data;
+		document.body.appendChild(p);
+	}
+	function mul(){
+		var first=parseInt(document.getElementById("first").value);
+		var second=parseInt(document.getElementById("second").value);
+		var data=first*second;
+		var p=document.createElement("p");
+		p.innerHTML="Mul = "+data;
+		document.body.appendChild(p);
+	}
+	function div(){
+		var first=parseFloat(document.getElementById("first").value);
+		var second=parseFloat(document.getElementById("second").value);
+		var data=first/second;
+		var p=document.createElement("p");
+		p.innerHTML="Div = "+data;
+		document.body.appendChild(p);
+	}
+	
+</script>
+</head>
+<body>
+<form action="">
+	First Number : <input  type="number" name="first" id="first" placeholder="first number"> <br>
+	Second Number : <input  type="number" name="second" id="second" placeholder="second number"> <br>
+	 <input  type="button" value="add" onclick="add()">
+	 <input  type="button" value="sub" onclick="sub()">
+	 <input  type="button" value="mul" onclick="mul()">
+	 <input  type="button" value="div" onclick="div()"> 
+</form>
+</body>
+</html>

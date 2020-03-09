@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="AjaxObject.js"></script>
+<script type="text/javascript">
+	function getData() {
+		var xhr=getXMLHttp();
+		xhr.open("POST","append",true);
+		var firstName=document.getElementById("firstName").value;
+		var lastName=document.getElementById("lastName").value;
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.onreadystatechange=()=>{
+			if(xhr.readyState==4 && xhr.status==200)
+				{
+					var data=xhr.responseText;
+					console.log(data);
+					var p=document.createElement("p");
+					p.innerHTML=data;
+					document.body.appendChild(p);
+				}
+			
+		}
+		xhr.send("firstName="+firstName+"&lastName="+lastName);
+		
+	}
+</script>
+</head>
+<body>
+	<form>
+		first name : <input type="text" id="firstName" name="firstName"
+			placeholder="firstName"> <br> 
+		last name : <input type="text" id="lastName" name="lastName"
+			placeholder="lastName"> <br>
+			<input type="button"
+			value="Click" onclick="getData()">
+	</form>
+</body>
+</html>
